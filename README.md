@@ -1,4 +1,4 @@
-# 💰 Expense Tracker
+# 💰 Money_Minder
 
 A centralized expense tracking platform that helps users manage their finances efficiently by collecting, categorizing, and visualizing expenses in a single dashboard. The system is designed to be simple, transparent, and scalable for future enhancements.
 
