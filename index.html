@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="page-type" content="login">
+    <meta name="description" content="Privacy-first automatic expense intelligence.">
+    <title>Login | Expense Intelligence</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="static/css/base.css">
+    <link rel="stylesheet" href="static/css/login.css">
+
+    <!-- Critical Scripts (Prevent Flash) -->
+    <script src="static/js/base.js"></script>
+    <script>App.checkAuth();</script>
+</head>
+
+<body>
+    <div class="login-wrapper">
+        <!-- Trust/Brand Section -->
+        <div class="brand-section">
+            <div class="brand-content fade-in">
+                <div class="logo-area">
+                    <span class="logo-icon">✨</span>
+                    <span class="logo-text">Expense Intelligence</span>
+                </div>
+                <h1 class="headline">
+                    Stop tracking.<br>
+                    Start understanding.
+                </h1>
+                <p class="subheadline">
+                    Zero manual entry. Privacy first.<br>
+                    Your financial clarity awaits.
+                </p>
+
+                <div class="trust-badges">
+                    <div class="badge">
+                        <span class="icon">🔒</span>
+                        <span>Encrypted locally</span>
+                    </div>
+                    <div class="badge">
+                        <span class="icon">🚫</span>
+                        <span>No ads, ever</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Login Form Section -->
+        <div class="form-section">
+            <div class="form-card fade-in" style="animation-delay: 100ms;">
+                <h2 class="form-title">Secure Login</h2>
+                <p class="form-subtitle">Enter your mobile number to continue</p>
+
+                <form id="login-form">
+                    <div class="input-group">
+                        <label for="mobile" class="input-label">Mobile Number</label>
+                        <div class="input-wrapper">
+                            <span class="country-code">+91</span>
+                            <input type="tel" id="mobile" class="input-field with-prefix" placeholder="90000 00000"
+                                maxlength="10" required autocomplete="tel-national">
+                        </div>
+                        <div id="error-msg" class="error-message visually-hidden">Please enter a valid 10-digit number
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block" id="login-btn">
+                        <span class="btn-text">Get Login OTP</span>
+                        <div class="spinner visually-hidden"></div>
+                    </button>
+
+                    <p class="disclaimer">
+                        By logging in, you agree to our <a href="#">Privacy Protocol</a>.
+                        <br>We do not sell your data.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="static/js/login.js"></script>
+</body>
+
+</html>

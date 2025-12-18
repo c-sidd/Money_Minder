@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="page-type" content="insights">
+    <meta name="theme-color" content="#0f131a">
+    <title>Expense Intelligence | Insights</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="static/css/base.css">
+    <link rel="stylesheet" href="static/css/insights.css">
+
+    <!-- Critical Scripts (Auth Check) -->
+    <script src="static/js/base.js"></script>
+    <script>App.checkAuth();</script>
+</head>
+
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <span class="logo-icon">✨</span>
+                <span class="logo-text">Expense Intel</span>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-label">Overview</span>
+                </a>
+                <a href="insights.html" class="nav-item active">
+                    <span class="nav-icon">✨</span>
+                    <span class="nav-label">Insights</span>
+                </a>
+                <a href="alerts.html" class="nav-item">
+                    <span class="nav-icon">⚠️</span>
+                    <span class="nav-label">Alerts</span>
+                </a>
+                <a href="goals.html" class="nav-item">
+                    <span class="nav-icon">🎯</span>
+                    <span class="nav-label">Goals</span>
+                </a>
+                <a href="profile.html" class="nav-item">
+                    <span class="nav-icon">👤</span>
+                    <span class="nav-label">Profile</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-mini-profile">
+                    <div class="avatar-circle small">CS</div>
+                    <div class="user-info">
+                        <span class="u-name">User</span>
+                        <span class="u-status">Premium Plan</span>
+                    </div>
+                </div>
+                <button class="icon-btn logout-btn" onclick="App.logout()" title="Logout"
+                    style="margin-left: auto; color: var(--color-text-muted);">
+                    🚪
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="app-header fade-in">
+                <div class="header-left">
+                    <h1 class="page-title">Spending Insights</h1>
+                    <p class="greeting-text">Analyze your financial habits</p>
+                </div>
+                <div class="header-right">
+                    <div class="month-selector">
+                        <button class="icon-btn sm">‹</button>
+                        <span class="current-month-display">September 2025</span>
+                        <button class="icon-btn sm">›</button>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-body">
+                <div class="insights-grid">
+
+                    <!-- 1. The Main Insight (Big Card) -->
+                    <section class="insight-highlight fade-in" style="animation-delay: 100ms;">
+                        <div class="highlight-content">
+                            <div class="h-icon">💡</div>
+                            <div class="h-text">
+                                <h2>Weekend Spender</h2>
+                                <p>You spend <strong>45% more</strong> on weekends compared to weekdays. Dining out is
+                                    the biggest contributor.</p>
+                            </div>
+                        </div>
+                        <div class="h-chart-mini" id="mini-trend-chart">
+                            <!-- JS will render simple bars here -->
+                        </div>
+                    </section>
+
+                    <!-- 2. Category Breakdown -->
+                    <section class="category-section fade-in" style="animation-delay: 200ms;">
+                        <div class="section-header">
+                            <h3>Where your money went</h3>
+                        </div>
+                        <div class="category-bars" id="category-list">
+                            <!-- JS injected bars -->
+                            <div class="loading-skeleton"></div>
+                            <div class="loading-skeleton"></div>
+                            <div class="loading-skeleton"></div>
+                        </div>
+                    </section>
+
+                    <!-- 3. Merchant Top List -->
+                    <section class="merchant-section fade-in" style="animation-delay: 300ms;">
+                        <div class="section-header">
+                            <h3>Top Merchants</h3>
+                        </div>
+                        <div class="merchant-list" id="merchant-list">
+                            <!-- JS injected -->
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="bottom-nav mobile-only">
+        <a href="dashboard.html" class="nav-item">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="insights.html" class="nav-item active">
+            <span class="nav-icon">✨</span>
+            <span class="nav-label">Insights</span>
+        </a>
+        <a href="alerts.html" class="nav-item">
+            <span class="nav-icon">⚠️</span>
+            <span class="nav-label">Alerts</span>
+        </a>
+        <a href="profile.html" class="nav-item">
+            <span class="nav-icon">👤</span>
+            <span class="nav-label">Profile</span>
+        </a>
+    </nav>
+
+    <!-- Scripts -->
+    <script src="static/js/insights.js"></script>
+</body>
+
+</html>
