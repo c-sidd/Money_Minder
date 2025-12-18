@@ -1,0 +1,222 @@
+/* Login Specific Styles */
+
+.login-wrapper {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* Brand Section (Left) */
+.brand-section {
+    flex: 1;
+    background-color: var(--color-bg-body);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle background gradient/effect for Brand Section */
+.brand-section::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(31, 41, 59, 0.4) 0%, transparent 60%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.brand-content {
+    position: relative;
+    z-index: 1;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+}
+
+.logo-icon {
+    font-size: 1.5rem;
+}
+
+.logo-text {
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.headline {
+    margin-bottom: 1.5rem;
+    font-size: 3.5rem;
+    /* Large and bold */
+    line-height: 1.1;
+    background: linear-gradient(135deg, var(--color-text-main) 0%, var(--color-text-muted) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subheadline {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+    color: var(--color-text-muted);
+}
+
+.trust-badges {
+    display: flex;
+    gap: 2rem;
+}
+
+.badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text-subtle);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Form Section (Right) */
+.form-section {
+    flex: 0 0 500px;
+    /* Fixed width for login form area on desktop */
+    background-color: var(--color-bg-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    border-left: 1px solid var(--border-subtle);
+}
+
+.form-card {
+    width: 100%;
+    max-width: 360px;
+}
+
+.form-title {
+    margin-bottom: 0.5rem;
+}
+
+.form-subtitle {
+    margin-bottom: 2rem;
+    font-size: 0.875rem;
+}
+
+/* Input Styling Override */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.country-code {
+    position: absolute;
+    left: 1rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    pointer-events: none;
+}
+
+.input-field.with-prefix {
+    padding-left: 3.5rem;
+    /* Make room for +91 */
+    letter-spacing: 0.05em;
+    font-family: monospace;
+    /* Monospace for numbers looks good */
+    font-size: 1.1rem;
+}
+
+.error-message {
+    color: var(--color-accent-error);
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.btn-block {
+    width: 100%;
+    margin-top: 1rem;
+    position: relative;
+}
+
+.disclaimer {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--color-text-subtle);
+    margin-top: 2rem;
+    line-height: 1.5;
+}
+
+.disclaimer a {
+    color: var(--color-text-muted);
+    text-decoration: underline;
+    transition: color 0.1s;
+}
+
+.disclaimer a:hover {
+    color: var(--color-text-main);
+}
+
+/* Spinner */
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #0f172a;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 900px) {
+    .login-wrapper {
+        flex-direction: column;
+    }
+
+    .brand-section {
+        padding: 2rem;
+        flex: 0 0 auto;
+        /* Let content dictate height, strictly speaking minimal */
+        min-height: 40vh;
+        justify-content: flex-end;
+    }
+
+    .headline {
+        font-size: 2.5rem;
+    }
+
+    .form-section {
+        flex: 1;
+        width: 100%;
+        border-left: none;
+        border-top: 1px solid var(--border-subtle);
+        padding: 2rem;
+        align-items: flex-start;
+    }
+
+    .form-card {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+}

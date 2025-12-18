@@ -1,0 +1,228 @@
+/* Insights Page Styles */
+
+/* Header Controls */
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.month-selector {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--color-bg-card);
+    padding: 0.5rem;
+    border-radius: 2rem;
+    /* Pill shape */
+    border: var(--border-subtle);
+}
+
+.current-month-display {
+    font-weight: 500;
+    color: var(--color-text-main);
+    min-width: 120px;
+    text-align: center;
+}
+
+/* Base Grid Layout */
+.insights-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 800px;
+    /* Constrain width for readability on large screens */
+    margin: 0 auto;
+    /* Center content */
+}
+
+/* 1. Highlight Card */
+.insight-highlight {
+    background: linear-gradient(135deg, var(--color-bg-card) 0%, rgba(207, 181, 59, 0.05) 100%);
+    border: 1px solid rgba(207, 181, 59, 0.2);
+    border-radius: 16px;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    box-shadow: var(--shadow-md);
+}
+
+.highlight-content {
+    flex: 1;
+}
+
+.h-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.h-text h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-accent-gold);
+}
+
+.h-text p {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--color-text-main);
+}
+
+.h-chart-mini {
+    width: 120px;
+    height: 80px;
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    opacity: 0.8;
+}
+
+.mini-bar {
+    flex: 1;
+    background-color: var(--color-bg-input);
+    border-radius: 2px 2px 0 0;
+    transition: height 0.5s ease;
+}
+
+.mini-bar.active {
+    background-color: var(--color-accent-gold);
+}
+
+/* 2. Category Section */
+.category-bars {
+    background: var(--color-bg-card);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.cat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.cat-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    color: var(--color-text-main);
+}
+
+.cat-bar-track {
+    width: 100%;
+    height: 8px;
+    background-color: var(--color-bg-input);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.cat-bar-fill {
+    height: 100%;
+    background-color: var(--color-text-subtle);
+    /* Default */
+    border-radius: 4px;
+    width: 0;
+    /* Animate via JS */
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Color coding for categories */
+.cat-dining .cat-bar-fill {
+    background-color: #F87171;
+}
+
+/* Food: Soft Red */
+.cat-transport .cat-bar-fill {
+    background-color: #60A5FA;
+}
+
+/* Transport: Soft Blue */
+.cat-shopping .cat-bar-fill {
+    background-color: #A78BFA;
+}
+
+/* Shopping: Soft Purple */
+.cat-bills .cat-bar-fill {
+    background-color: #34D399;
+}
+
+/* Bills: Soft Green */
+
+/* 3. Merchant Top List */
+.merchant-list {
+    background: var(--color-bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.merchant-item {
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: var(--border-subtle);
+    transition: background-color var(--transition-fast);
+}
+
+.merchant-item:last-child {
+    border-bottom: none;
+}
+
+.merchant-item:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.m-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.m-icon {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-bg-input);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.m-name {
+    font-weight: 500;
+}
+
+.m-count {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+.m-amount {
+    font-weight: 600;
+    color: var(--color-text-main);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .insight-highlight {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.5rem;
+    }
+
+    .h-chart-mini {
+        width: 100%;
+        height: 60px;
+        margin-top: 1rem;
+    }
+
+    .header-right {
+        display: none;
+        /* Hide month selector on tiny screens for MVP */
+    }
+}
