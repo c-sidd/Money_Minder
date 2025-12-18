@@ -1,0 +1,38 @@
+/* Fixed Expenses CSS */
+/* Reusing most styles from Base and Dashboard */
+
+.auto-pay-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.ap-on {
+    background-color: rgba(72, 187, 120, 0.1);
+    color: var(--success);
+    border: 1px solid rgba(72, 187, 120, 0.2);
+}
+
+.ap-off {
+    background-color: rgba(113, 128, 150, 0.1);
+    color: var(--text-muted);
+    border: 1px solid rgba(113, 128, 150, 0.2);
+}
+
+.action-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--bg-input);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.action-btn:hover {
+    background: var(--primary);
+    color: #1a202c;
+}

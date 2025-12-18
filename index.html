@@ -4,89 +4,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="page-type" content="login">
-    <meta name="description" content="Privacy-first automatic expense intelligence.">
-    <title>Login | Expense Intelligence</title>
-
+    <title>Money Minder</title>
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Base CSS -->
     <link rel="stylesheet" href="static/css/base.css">
+    <!-- Login CSS -->
     <link rel="stylesheet" href="static/css/login.css">
-
-    <!-- Critical Scripts (Prevent Flash) -->
-    <script src="static/js/base.js"></script>
-    <script>App.checkAuth();</script>
 </head>
 
-<body>
-    <div class="login-wrapper">
-        <!-- Trust/Brand Section -->
-        <div class="brand-section">
-            <div class="brand-content fade-in">
-                <div class="logo-area">
-                    <span class="logo-icon">✨</span>
-                    <span class="logo-text">Expense Intelligence</span>
-                </div>
-                <h1 class="headline">
-                    Stop tracking.<br>
-                    Start understanding.
-                </h1>
-                <p class="subheadline">
-                    Zero manual entry. Privacy first.<br>
-                    Your financial clarity awaits.
-                </p>
+<body class="login-body">
 
-                <div class="trust-badges">
-                    <div class="badge">
-                        <span class="icon">🔒</span>
-                        <span>Encrypted locally</span>
-                    </div>
-                    <div class="badge">
-                        <span class="icon">🚫</span>
-                        <span>No ads, ever</span>
-                    </div>
-                </div>
-            </div>
+    <div class="login-container">
+        <!-- Brand Section -->
+        <div class="login-brand">
+            <i class="fas fa-wallet brand-logo"></i>
+            <h1 class="brand-text">Money Minder</h1>
+            <p class="brand-desc">Master your finances with powerful insights and effortless tracking.</p>
         </div>
 
-        <!-- Login Form Section -->
-        <div class="form-section">
-            <div class="form-card fade-in" style="animation-delay: 100ms;">
-                <h2 class="form-title">Secure Login</h2>
-                <p class="form-subtitle">Enter your mobile number to continue</p>
+        <!-- Form Section -->
+        <div class="login-form-container">
+            <div class="login-header">
+                <h2>Welcome Back</h2>
+                <p>Please sign in to continue to your dashboard.</p>
+            </div>
 
-                <form id="login-form">
-                    <div class="input-group">
-                        <label for="mobile" class="input-label">Mobile Number</label>
-                        <div class="input-wrapper">
-                            <span class="country-code">+91</span>
-                            <input type="tel" id="mobile" class="input-field with-prefix" placeholder="90000 00000"
-                                maxlength="10" required autocomplete="tel-national">
-                        </div>
-                        <div id="error-msg" class="error-message visually-hidden">Please enter a valid 10-digit number
-                        </div>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <div style="position: relative;">
+                        <input type="email" class="form-input" placeholder="name@example.com"
+                            value="alex.doe@fintech.com" required>
+                        <i class="fas fa-envelope"
+                            style="position: absolute; right: 1rem; top: 1rem; color: var(--text-secondary);"></i>
                     </div>
+                </div>
 
-                    <button type="submit" class="btn btn-primary btn-block" id="login-btn">
-                        <span class="btn-text">Get Login OTP</span>
-                        <div class="spinner visually-hidden"></div>
-                    </button>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <div style="position: relative;">
+                        <input type="password" class="form-input" placeholder="••••••••" value="password123" required>
+                        <i class="fas fa-lock"
+                            style="position: absolute; right: 1rem; top: 1rem; color: var(--text-secondary);"></i>
+                    </div>
+                </div>
 
-                    <p class="disclaimer">
-                        By logging in, you agree to our <a href="#">Privacy Protocol</a>.
-                        <br>We do not sell your data.
-                    </p>
-                </form>
+                <button type="submit" class="btn btn-primary login-btn">Sign In</button>
+            </form>
+
+            <div class="demo-note">
+                <i class="fas fa-info-circle"></i>
+                <strong>Demo Mode:</strong> Any email and password will work.
             </div>
         </div>
     </div>
 
     <!-- Scripts -->
-    <script src="static/js/login.js"></script>
+    <script src="static/js/auth.js"></script>
+    <script>
+        // Override the auth check for this page to handle form submission
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = e.target[0].value;
+            const password = e.target[1].value;
+
+            // Simulating loading
+            const btn = document.querySelector('.login-btn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Signing In...';
+            btn.style.opacity = '0.8';
+
+            setTimeout(() => {
+                if (Auth.login(email, password)) {
+                    // Redirect happens in Auth.login
+                } else {
+                    btn.innerHTML = originalText;
+                    btn.style.opacity = '1';
+                }
+            }, 800);
+        }
+    </script>
 </body>
 
 </html>

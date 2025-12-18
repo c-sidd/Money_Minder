@@ -1,0 +1,118 @@
+/* Filter Bar */
+.filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem 1.5rem !important;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.filter-select {
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding-right: 1.5rem;
+    /* Space for arrow if custom */
+}
+
+.filter-select option {
+    background-color: var(--bg-card);
+    color: white;
+}
+
+.search-box {
+    position: relative;
+    width: 250px;
+}
+
+.search-box i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+}
+
+.search-box input {
+    width: 100%;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 0.6rem 1rem 0.6rem 2.5rem;
+    border-radius: 9999px;
+    color: white;
+}
+
+.search-box input:focus {
+    border-color: var(--primary);
+}
+
+.ml-auto {
+    margin-left: auto;
+}
+
+/* Full Table Overrides */
+.full-table th {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.status-completed {
+    background-color: rgba(72, 187, 120, 0.2);
+    color: var(--success);
+}
+
+.status-pending {
+    background-color: rgba(237, 137, 54, 0.2);
+    color: var(--warning);
+}
+
+.payment-detail {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.payment-detail img {
+    height: 16px;
+    /* Placeholder for card/bank logo if needed */
+}
+
+@media (max-width: 768px) {
+    .filter-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .filter-group.ml-auto {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .search-box {
+        width: 100%;
+        /* In header, not filter bar */
+    }
+
+    .app-container header .search-box {
+        display: none;
+        /* Hide top search on mobile if space constrained */
+    }
+}

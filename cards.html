@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Minder</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Base CSS -->
+    <link rel="stylesheet" href="static/css/base.css">
+    <!-- Cards CSS -->
+    <link rel="stylesheet" href="static/css/cards.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="sidebar"></aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="flex justify-between items-center" style="margin-bottom: 2rem;">
+                <div>
+                    <h1 class="text-2xl font-bold">My Cards</h1>
+                    <p class="text-secondary text-sm">Manage your credit & debit cards.</p>
+                </div>
+                <button class="btn btn-primary text-sm">
+                    <i class="fas fa-plus"></i> Add New Card
+                </button>
+            </header>
+
+            <!-- Cards Container -->
+            <div id="cardsContainer" class="cards-grid">
+                <!-- Populated by JS -->
+            </div>
+
+            <!-- Card Details Section (Static for now, but dynamic in JS later could handle clicks) -->
+            <div class="card" style="margin-top: 2rem;">
+                <div class="card-header">
+                    <h3 class="font-bold">Card Statements & Limits</h3>
+                </div>
+                <div class="table-container">
+                    <table class="transaction-table">
+                        <thead>
+                            <tr>
+                                <th>Card Name</th>
+                                <th>Bank</th>
+                                <th>Type</th>
+                                <th style="text-align: right;">Limit / Balance</th>
+                                <th style="text-align: right;">Used / Blocked</th>
+                                <th style="text-align: right;">Available</th>
+                                <th style="text-align: center;">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cardStatementsList">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="static/js/data.js"></script>
+    <script src="static/js/auth.js"></script>
+    <script src="static/js/base.js"></script>
+    <script src="static/js/cards.js"></script>
+</body>
+
+</html>

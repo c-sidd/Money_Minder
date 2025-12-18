@@ -4,208 +4,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="page-type" content="dashboard">
-    <meta name="theme-color" content="#0f131a">
-    <title>Expense Intelligence | Dashboard</title>
-
+    <title>Money Minder</title>
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Base CSS -->
     <link rel="stylesheet" href="static/css/base.css">
+    <!-- Dashboard CSS -->
     <link rel="stylesheet" href="static/css/dashboard.css">
-
-    <!-- Critical Scripts (Auth Check) -->
-    <script src="static/js/base.js"></script>
-    <script>App.checkAuth();</script>
 </head>
 
 <body>
-    <div class="app-layout">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-brand">
-                <span class="logo-icon">✨</span>
-                <span class="logo-text">Expense Intel</span>
-            </div>
 
-            <nav class="sidebar-nav">
-                <a href="dashboard.html" class="nav-item active">
-                    <span class="nav-icon">🏠</span>
-                    <span class="nav-label">Overview</span>
-                </a>
-                <a href="insights.html" class="nav-item">
-                    <span class="nav-icon">✨</span>
-                    <span class="nav-label">Insights</span>
-                </a>
-                <a href="alerts.html" class="nav-item">
-                    <span class="nav-icon">⚠️</span>
-                    <span class="nav-label">Alerts</span>
-                    <!-- Optional Badge: <span class="nav-badge">2</span> -->
-                </a>
-                <a href="goals.html" class="nav-item">
-                    <span class="nav-icon">🎯</span>
-                    <span class="nav-label">Goals</span>
-                </a>
-                <a href="profile.html" class="nav-item">
-                    <span class="nav-icon">👤</span>
-                    <span class="nav-label">Profile</span>
-                </a>
-            </nav>
-
-            <div class="sidebar-footer">
-                <div class="user-mini-profile">
-                    <div class="avatar-circle small">CS</div>
-                    <div class="user-info">
-                        <span class="u-name">User</span>
-                        <span class="u-status">Premium Plan</span>
-                    </div>
-                </div>
-                <button class="icon-btn logout-btn" onclick="App.logout()" title="Logout"
-                    style="margin-left: auto; color: var(--color-text-muted);">
-                    🚪
-                </button>
-            </div>
-        </aside>
+    <div class="app-container">
+        <!-- Sidebar (Rendered by base.js) -->
+        <aside id="sidebar" class="sidebar"></aside>
 
         <!-- Main Content -->
         <main class="main-content">
             <!-- Header -->
-            <header class="app-header fade-in">
-                <div class="header-left">
-                    <h1 class="page-title">Dashboard</h1>
-                    <p class="greeting-text">
-                        <span id="time-greeting">Good evening</span>, User
+            <header class="flex justify-between items-center" style="margin-bottom: 2rem;">
+                <div>
+                    <h1 class="text-2xl font-bold">Dashboard</h1>
+                    <p class="text-secondary text-sm">Welcome back, <span id="userName">Chandrachud Siddharth</span>!
                     </p>
                 </div>
-                <!-- Notifications Bell -->
-                <button class="icon-btn" aria-label="Notifications">
-                    <span class="badged-icon">🔔</span>
-                </button>
+                <div class="flex items-center gap-4">
+                    <button class="btn btn-outline" style="border-radius: 50%; width: 40px; height: 40px; padding: 0;">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="btn btn-outline"
+                        style="border-radius: 50%; width: 40px; height: 40px; padding: 0; position: relative;">
+                        <i class="fas fa-bell"></i>
+                        <span
+                            style="position: absolute; top: 0px; right: 0px; width: 10px; height: 10px; background: var(--danger); border-radius: 50%; border: 2px solid var(--bg-card);"></span>
+                    </button>
+                    <!-- Mobile Menu Toggle -->
+                    <button id="sidebar-toggle" class="btn btn-outline" style="display: none;">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
             </header>
 
-            <div class="content-body">
-                <div class="dashboard-grid">
-                    <!-- MAIN COLUMN -->
-                    <div class="grid-main">
-
-                        <!-- 1. Hero Card: Safe to Spend -->
-                        <section class="hero-card fade-in" style="animation-delay: 100ms;">
-                            <div class="bg-glow"></div>
-                            <div class="safe-label-group">
-                                <span class="card-label">Safe to spend</span>
-                                <span class="info-icon" title="Income - (Fixed Bills + Savings)">ⓘ</span>
-                            </div>
-
-                            <div class="amount-display">
-                                <span class="currency">₹</span>
-                                <span class="amount" id="safe-spend-amount">--,--</span>
-                            </div>
-
-                            <!-- Monthly Snapshot Bar -->
-                            <div class="monthly-snapshot">
-                                <div class="snapshot-header">
-                                    <span id="monthly-spend-text">Searching transactions...</span>
-                                    <span>Income Limit</span>
-                                </div>
-                                <div class="progress-track">
-                                    <div class="progress-fill" id="monthly-progress-bar"></div>
-                                </div>
-                            </div>
-
-                            <div class="card-footer">
-                                <div class="projection">
-                                    <span class="trend-icon up">↗</span>
-                                    <span>+₹2,400 vs last month</span>
-                                </div>
-                                <div class="date-context" id="current-month">September 2025</div>
-                            </div>
-                        </section>
-
-                        <!-- 2. Quick Actions -->
-                        <section class="quick-actions fade-in" style="animation-delay: 200ms;">
-                            <button class="action-btn">
-                                <div class="action-icon">📸</div>
-                                <span>Scan Bill</span>
-                            </button>
-                            <button class="action-btn">
-                                <div class="action-icon">💸</div>
-                                <span>Send</span>
-                            </button>
-                            <button class="action-btn">
-                                <div class="action-icon">📊</div>
-                                <span>Report</span>
-                            </button>
-                            <button class="action-btn">
-                                <div class="action-icon">➕</div>
-                                <span>Add</span>
-                            </button>
-                        </section>
-
-                        <!-- 3. Recent Activity Chart (Placeholder for Future) -->
-                        <!-- Skipped for MVP per instructions to focus on Clarity not Charts -->
-
+            <!-- Summary Cards Grid -->
+            <div class="dashboard-grid">
+                <!-- Total Balance -->
+                <div class="card summary-card balance-card">
+                    <div class="card-icon"><i class="fas fa-wallet"></i></div>
+                    <div class="card-info">
+                        <span class="card-label">Total Balance</span>
+                        <h3 class="card-value" id="totalBalance">₹0</h3>
+                        <span class="card-trend positive"><i class="fas fa-arrow-up"></i> +12.5%</span>
                     </div>
+                </div>
 
-                    <!-- SIDE COLUMN -->
-                    <div class="grid-side">
+                <!-- Monthly Income -->
+                <div class="card summary-card">
+                    <div class="card-icon" style="background: rgba(72, 187, 120, 0.1); color: var(--success);"><i
+                            class="fas fa-arrow-down"></i></div>
+                    <div class="card-info">
+                        <span class="card-label">Monthly Income</span>
+                        <h3 class="card-value" id="monthlyIncome">₹0</h3>
+                    </div>
+                </div>
 
-                        <!-- 4. Insight Pill -->
-                        <section class="insight-pill fade-in" style="animation-delay: 300ms;">
-                            <div class="insight-icon">💡</div>
-                            <div class="insight-text">
-                                <strong>Spending Tip:</strong> You've spent 20% less on dining this week. Moving ₹500 to
-                                savings?
-                            </div>
-                        </section>
+                <!-- Monthly Expenses -->
+                <div class="card summary-card">
+                    <div class="card-icon" style="background: rgba(245, 101, 101, 0.1); color: var(--danger);"><i
+                            class="fas fa-arrow-up"></i></div>
+                    <div class="card-info">
+                        <span class="card-label">Monthly Expenses</span>
+                        <h3 class="card-value" id="monthlyExpenses">₹0</h3>
+                    </div>
+                </div>
 
-                        <!-- 5. Upcoming Payments (New) -->
-                        <section class="upcoming-section fade-in" style="animation-delay: 350ms;">
-                            <header class="section-header">
-                                <h3>Upcoming</h3>
-                            </header>
-                            <div id="upcoming-list">
-                                <!-- Injected by JS -->
-                            </div>
-                        </section>
-
-                        <!-- 6. Recent Activity -->
-                        <section class="transactions-section fade-in" style="animation-delay: 400ms;">
-                            <header class="section-header">
-                                <h3>Recent Activity</h3>
-                                <a href="#" class="see-all">See all</a>
-                            </header>
-
-                            <div class="transaction-list" id="transaction-list">
-                                <div class="loading-skeleton"></div>
-                                <div class="loading-skeleton"></div>
-                                <div class="loading-skeleton"></div>
-                            </div>
-                        </section>
-
+                <!-- Safe to Spend -->
+                <div class="card summary-card">
+                    <div class="card-icon" style="background: rgba(66, 153, 225, 0.1); color: var(--info);"><i
+                            class="fas fa-piggy-bank"></i></div>
+                    <div class="card-info">
+                        <span class="card-label">Net Savings</span>
+                        <h3 class="card-value" id="netSavings">₹0</h3>
                     </div>
                 </div>
             </div>
+
+            <!-- Content Split (Main + Side) -->
+            <div class="content-split">
+                <!-- Left Column (Transactions & Cards) -->
+                <div class="left-col flex-col gap-4">
+
+                    <!-- Recent Transactions -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="font-bold">Recent Transactions</h3>
+                            <a href="transactions.html" class="text-sm text-primary">View All</a>
+                        </div>
+                        <div class="table-container">
+                            <table class="transaction-table">
+                                <thead>
+                                    <tr>
+                                        <th>Transaction</th>
+                                        <th>Date</th>
+                                        <th>Method</th>
+                                        <th style="text-align: right;">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recentTransactionsList">
+                                    <!-- Populated by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right Column (Fixed Items & Debts) -->
+                <div class="right-col flex-col gap-4">
+
+                    <!-- My Cards Summary (Mini) -->
+                    <div class="card" style="background: linear-gradient(135deg, #1a1d2d, #131624);">
+                        <div class="card-header">
+                            <h3 class="font-bold">My Cards</h3>
+                            <button class="btn btn-outline" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;"><i
+                                    class="fas fa-plus"></i></button>
+                        </div>
+                        <div id="cardsPreview" class="flex-col gap-4">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Upcoming Bills -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="font-bold">Upcoming Bills</h3>
+                        </div>
+                        <div id="upcomingBillsList" class="flex-col gap-2">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
         </main>
     </div>
 
-    <!-- Mobile Navigation -->
-    <nav class="bottom-nav mobile-only">
-        <a href="dashboard.html" class="nav-item active">
-            <span class="nav-icon">🏠</span>
-            <span class="nav-label">Home</span>
-        </a>
-        <!-- ... other items ... -->
-        <a href="profile.html" class="nav-item">
-            <span class="nav-icon">👤</span>
-            <span class="nav-label">Profile</span>
-        </a>
-    </nav>
-
     <!-- Scripts -->
-    <!-- Scripts -->
+    <script src="static/js/data.js"></script>
+    <script src="static/js/auth.js"></script>
+    <script src="static/js/base.js"></script>
     <script src="static/js/dashboard.js"></script>
 </body>
 

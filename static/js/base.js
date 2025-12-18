@@ -1,56 +1,90 @@
 /**
- * Expense Intelligence - Base Utilities
+ * BASE JS
+ * Common UI logic
  */
 
 const App = {
-  // DOM Query Helper
-  $: (selector) => document.querySelector(selector),
-  $$: (selector) => document.querySelectorAll(selector),
-
-  // Local Storage Wrapper
-  store: {
-    get: (key) => {
-      try {
-        return JSON.parse(localStorage.getItem(key));
-      } catch (e) {
-        return null;
-      }
+    init: () => {
+        App.renderSidebar();
+        App.setupEventListeners();
     },
-    set: (key, value) => {
-      localStorage.setItem(key, JSON.stringify(value));
+
+    renderSidebar: () => {
+        const sidebar = document.getElementById('sidebar');
+        if (!sidebar) return; // Login page might not have sidebar
+
+        const currentPage = window.location.pathname.split('/').pop();
+
+        sidebar.innerHTML = `
+            <div class="sidebar-header">
+                <div class="logo-icon"><i class="fas fa-wallet"></i></div>
+                <h2 class="text-xl font-bold">Money Minder</h2>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="dashboard.html" class="nav-item ${currentPage === 'dashboard.html' ? 'active' : ''}">
+                    <i class="fas fa-th-large"></i> Dashboard
+                </a>
+                <a href="transactions.html" class="nav-item ${currentPage === 'transactions.html' ? 'active' : ''}">
+                    <i class="fas fa-list"></i> Transactions
+                </a>
+                <a href="cards.html" class="nav-item ${currentPage === 'cards.html' ? 'active' : ''}">
+                    <i class="fas fa-credit-card"></i> Cards
+                </a>
+                <a href="fixed-expenses.html" class="nav-item ${currentPage === 'fixed-expenses.html' ? 'active' : ''}">
+                    <i class="fas fa-file-invoice-dollar"></i> Fixed Expenses
+                </a>
+                <a href="debts.html" class="nav-item ${currentPage === 'debts.html' ? 'active' : ''}">
+                    <i class="fas fa-hand-holding-usd"></i> Debts
+                </a>
+                <a href="reports.html" class="nav-item ${currentPage === 'reports.html' ? 'active' : ''}">
+                    <i class="fas fa-chart-pie"></i> Reports
+                </a>
+                <a href="settings.html" class="nav-item ${currentPage === 'settings.html' ? 'active' : ''}">
+                    <i class="fas fa-cog"></i> Settings
+                </a>
+            </nav>
+
+            <div class="user-profile">
+                <div class="avatar">
+                    <img src="${DataStore.user.avatar}" alt="User">
+                </div>
+                <div class="flex-col">
+                    <span class="text-sm font-bold">${DataStore.user.name}</span>
+                    <span class="text-xs text-secondary" style="cursor: pointer;" onclick="Auth.logout()">Log Out</span>
+                </div>
+            </div>
+        `;
     },
-    remove: (key) => localStorage.removeItem(key)
-  },
 
-  // Simple Router / Navigation Check
-  checkAuth: () => {
-    const isLoggedIn = App.store.get('isLoggedIn');
-    // Basic check
+    setupEventListeners: () => {
+        // Mobile toggle logic if exists
+        const toggleBtn = document.getElementById('sidebar-toggle');
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', () => {
+                document.getElementById('sidebar').classList.toggle('open');
+            });
+        }
+    },
 
-    // Logic:
-    // If NOT logged in and NOT on login page -> Redirect to login
-    // If logged in and ON login page -> Redirect to dashboard
+    // Utility to format currency
+    formatCurrency: (amount) => {
+        return new Intl.NumberFormat('en-IN', {
+            style: 'currency',
+            currency: 'INR',
+            maximumFractionDigits: 0
+        }).format(amount);
+    },
 
-    // Note: Since this is purely client-side and using file:// protocol often, 
-    // we rely on the specific meta tags for reliability.
-
-    // 1. If on protected page (not login) and NO auth -> Go to Index
-    if (!isLoggedIn && !document.querySelector('meta[name="page-type"][content="login"]')) {
-      window.location.replace('index.html'); // Use replace to prevent back-button loops
+    // Utility to format date
+    formatDate: (dateString) => {
+        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString('en-IN', options);
     }
-
-    // 2. If on login page and HAS auth -> Go to Dashboard
-    if (isLoggedIn && document.querySelector('meta[name="page-type"][content="login"]')) {
-      window.location.replace('dashboard.html'); // Use replace
-    }
-  },
-
-  logout: () => {
-    App.store.remove('isLoggedIn');
-    App.store.remove('userMobile');
-    window.location.replace('index.html');
-  }
 };
 
-// Initialize
-// App.checkAuth(); // Commented out until we have other pages to prevent infinite loops during dev
+// Check if DataStore is ready before init
+if (typeof DataStore !== 'undefined') {
+    // Wait for DOM
+    document.addEventListener('DOMContentLoaded', App.init);
+}

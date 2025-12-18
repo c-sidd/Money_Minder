@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Minder</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Base CSS -->
+    <link rel="stylesheet" href="static/css/base.css">
+    <!-- Settings CSS -->
+    <link rel="stylesheet" href="static/css/settings.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="sidebar"></aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="flex justify-between items-center" style="margin-bottom: 2rem;">
+                <div>
+                    <h1 class="text-2xl font-bold">Settings</h1>
+                    <p class="text-secondary text-sm">Manage preferences and profile.</p>
+                </div>
+            </header>
+
+            <div class="settings-container">
+                <!-- Profile Section -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="font-bold">Profile</h3>
+                    </div>
+                    <div class="profile-layout">
+                        <div class="profile-avatar-xl">
+                            <img id="profileImage" src="" alt="Profile">
+                        </div>
+                        <div class="profile-form">
+                            <div class="form-group-row">
+                                <label>Full Name</label>
+                                <input type="text" class="form-input" id="profileName" readonly>
+                            </div>
+                            <div class="form-group-row">
+                                <label>Email Address</label>
+                                <input type="email" class="form-input" id="profileEmail" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Linked Accounts -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="font-bold">Linked Banking Accounts</h3>
+                    </div>
+                    <div id="linkedAccountsList" class="flex-col gap-4">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Danger Zone -->
+                <div class="card" style="border-color: rgba(245, 101, 101, 0.3);">
+                    <div class="card-header">
+                        <h3 class="font-bold text-danger">Session</h3>
+                    </div>
+                    <p class="text-secondary text-sm mb-4">Securely sign out of your account on this device.</p>
+                    <button class="btn btn-outline text-danger" onclick="Auth.logout()">
+                        <i class="fas fa-sign-out-alt"></i> Log Out
+                    </button>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="static/js/data.js"></script>
+    <script src="static/js/auth.js"></script>
+    <script src="static/js/base.js"></script>
+    <script src="static/js/settings.js"></script>
+</body>
+
+</html>
